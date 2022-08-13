@@ -5,7 +5,7 @@ init -990 python in mas_submod_utils:
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
         "New for V1.2: Monika can now detect whether or not you have dev_console in your game folder, and (hopefully) reacts accordingly.",
-        version="1.2",
+        version="1.2.0",
         dependencies={},
         settings_pane=None,
         version_updates={

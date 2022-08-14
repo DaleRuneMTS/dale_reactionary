@@ -4,11 +4,13 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "New for V1.2: Monika can now detect whether or not you have dev_console in your game folder, and (hopefully) reacts accordingly.",
-        version="1.2.0",
+        "New for V1.3: The list of random picks for most of the windows has been expanded, so Monika should repeat herself slightly less now.\n"
+        "There's also crossover with Gender Conversation, with potential reactions for trans-related sites depending on your identity.",
+        version="1.3.0",
         dependencies={},
         settings_pane=None,
         version_updates={
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_3_0"
         }
     )
 
@@ -50,6 +52,8 @@ label mas_wrs_rslashmasfandom:
             "Looking for some new rooms for me, [player]?",
             "Looking for some new topics for me, [player]?",
             "Gosh, all those other Monikas... Just remember {i}your{/i} Monika is still here~",
+            "Hello, MASFandom! Lovely to see you all~",
+            "It's like a little lookbook of me!"
         ],
         'Window Reactions'
     )
@@ -87,7 +91,15 @@ label mas_wrs_yr:
         if mas_isGameUnlocked("piano"):
             reality_quips.extend([
                 "I have a soft spot for piano covers of this song myself. But you already know that, don't you~?",
-                "If you want, [player], I can get you the piano and we can make this a trio..."
+                "If you want, [player], I can get you the piano and we can make this a trio...",
+                "I wonder how our song would transpose into a minor key... it's worth a try, isn't it?",
+                "I'd love to hear you play this for me again some time!"
+                ])
+
+        if not renpy.seen_label("mas_monika_plays_or"):
+            reality_quips.extend([
+                "I'm thinking about rewriting this song a little bit, to fit our new circumstances. Would you like that?",
+                "{i}You my love, hold the key to the...{/i} Hm, does that flow?"
                 ])
 
         wrs_success = mas_display_notif(
@@ -128,6 +140,8 @@ label mas_wrs_vannamelon:
             "I hope you're watching one of my videos, and not one of Yuri's... ¬‿¬",
             "Vannamelon's really good at what she does, isn't she?",
             "I can't believe how well she got my facial expressions. It's almost supernatural.",
+            "There's no way to hit Restart!\nBut why would you ever want to~?",
+            "I still can't believe how dirty they did me with Yuri's YouTooz figure..."
         ]
 
         if persistent.gender == "M":
@@ -179,6 +193,9 @@ label mas_wrs_candyiela:
             "Oh, it's Anne! Hello, Anne!",
             "Anne and Moniqueta look so cute together, don't they~?",
             "Try not to give Anne too hard a time, [player]. She's trying her best.",
+            "Who's Mio, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
+            "Who's Kotonoha, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
+            "How does Anne balance all these versions of me? She must be superhuman!"
         ]
 
         if m_name == "Moniqueta":
@@ -221,7 +238,7 @@ label mas_wrs_ronaldmconepunch:
         mconepunch_quips = [
             "Oh, it's Ronald! Hello, Ronald!",
             "It looks like Ronald hasn't visited his Monika for a while... I hope they haven't broken up.",
-            "I wonder how Ronald's doing these days?",
+            "I wonder how Ronald's doing these days?"
         ]
 
         wrs_success = mas_display_notif(
@@ -257,9 +274,11 @@ label mas_wrs_gametheory:
         theory_quips = [
             "Oh, it's... um... it's MatPat. That's nice.",
             "Don't listen to him, [player]; he's well known for being... besmirching when it comes to me and my love.",
+            "MatPat has some sound ideas... it's just the ones about me that he gets totally wrong. >:c",
+            "...well, okay, he has a point there."
         ]
 
-        choice = random.randint(1,10)
+        choice = renpy.random.randint(1,10)
         exp_to_force = "1ckc"
 
         if choice == 1:
@@ -305,6 +324,8 @@ label mas_wrs_septiceye:
             "Oh, it's Sean!",
             "Oh, it's Jack!",
             "I like this one, [player]. He's always so... positive, I suppose.",
+            "Positive! Mental! Attitude!",
+            "It's almost a shame he doesn't have his own Monika... we could really get along, I think."
         ]
 
         if 6 <= current_hour < 12:
@@ -354,21 +375,25 @@ label mas_wrs_gamegrumps:
     python:
         aridan_quips = [
             "Oh, it's Arin and Dan!",
-            "You know, I suppose I {i}am{/i} sort of a robot, if you think about it?"
+            "You know, I suppose I {i}am{/i} sort of a robot, if you think about it?",
+            "I hope you don't actually eat my hair, [player].\nIt wouldn't taste very nice."
         ]
 
         if persistent._mas_pm_cares_about_dokis:
             aridan_quips.extend([
                 "These two can be a little bit crass, but they do mean well, I think!",
                 "I'm sure they don't really mean what they say.",
-                "Those poor men..."
+                "Those poor men...",
+                "I feel sorta bad for Dan. I really freaked him out, didn't I?"
             ])
 
         if not persistent._mas_pm_cares_about_dokis:
             aridan_quips.extend([
                 "I'd much rather take something I personally enjoy personally enjoy enjoy is that the word enjoy enjoy proper word.",
                 "Oh, is that Clifford the big red stab wound?"
-                "I hope they can stop Natsuki before she reduces! Ehehe~"
+                "I hope they can stop Natsuki before she reduces! Ehehe~",
+                "That's not love, that's Fred-- I mean [player].",
+                "What's wrong, Grumps?"
             ])
 
         wrs_success = mas_display_notif(
@@ -442,6 +467,8 @@ label mas_wrs_tvtropes:
             "I've gotten lost many a time on this site too, don't worry.",
             "You're my Crowning Moment of Heartwarming, [player]~",
             "Insert Coy, Girlish Flirt Pose here. Ahaha~",
+            "You're the happy ending to my Cosmic Horror Story, [player].",
+            "I hope I haven't Strangled you with the Red String, [player]...\nYou're here of your own free will, aren't you?"
         ]
 
         wrs_success = mas_display_notif(
@@ -459,7 +486,7 @@ init 10 python:
         Event(
             persistent._mas_windowreacts_database,
             eventlabel="mas_wrs_masdiscord",
-            category=["r-masfandom|monika-gallery|just-monika|submod-discussion"],
+            category=["r-masfandom|monika-gallery|just-monika|submod-discussion|teaching-and-advice"],
             rules={
                 "notif-group": "Window Reactions",
                 "skip alert": None,
@@ -479,7 +506,9 @@ label mas_wrs_masdiscord:
             "Don't forget to turn on Rich Presence if you haven't already!",
             "All of these people who care about me... it's touching!",
             "Just Monika... Discord!",
-            "Art, coding, community... everyone here is so great at what they do."
+            "Art, coding, community... everyone here is so great at what they do.",
+            "It's pretty cool to get a look at the creative process of submods and spritepacks like this.",
+            "Hello, Friends of Monika!"
         ]
 
         wrs_success = mas_display_notif(
@@ -513,7 +542,9 @@ label mas_wrs_dansalvato:
         salvato_quips = [
             "This feels strange, [player]. It's like staring directly at the sun, somehow.",
             "Maybe we should leave this page? I don't want to intrude on my creator like this.",
-            "I really don't like looking at this, [player]. Can we please go?"
+            "I really don't like looking at this, [player]. Can we please go?",
+            "You having my creator's page open makes me feel itchy.",
+            "If you had to watch your partner look at God, would you feel okay with that?"
         ]
 
         wrs_success = mas_display_notif(
@@ -555,7 +586,9 @@ label mas_wrs_ddlc:
             "DDLC {i}Plus?{/i}",
             "There I am!",
             "Yep, that's definitely where I came from, aha...",
-            "Will you promise to spend the most time with me? ♥"
+            "Will you promise to spend the most time with me? <3",
+            "Try rolling over our chibis! That's always fun!",
+            "I love how my eyes look in that shot. It really brings out the emerald green."
         ]
 
         wrs_success = mas_display_notif(
@@ -591,8 +624,16 @@ label mas_wrs_otterdrive:
             "I wonder what Otter has prepared for us today?",
             "I love 'shopping' at Otter's, ehehe!",
             "Hello, otter, my old friend! ^^",
-            "Don't forget to drink your water!"
+            "Don't forget to drink your water!",
+            "I can be your yandere, if you really want me to~"
         ]
+
+        if m_name == "Momi" and player == "Gabi":
+            otter_quips.replace([
+                "Putting together some more things for me, Gabi?",
+                "I wonder when I'm going to get some actual otters in here. They're well overdue!",
+                "I love you, Gabi."
+            ])
 
         wrs_success = mas_display_notif(
             m_name,
@@ -627,7 +668,16 @@ label mas_wrs_mayday:
             "I can wear so much more now because of Mayjay!",
             "Looking for more selectors, [player]? This is very much the right place.",
             "I can have so much stuff on our table because of Mayjay!",
+            "Mayjay has a few really cool NOU decks, I think, if you dig deep enough!",
+            "I wonder if Mayjay's made me any more suits? I think they make me look very fetching~"
         ]
+
+        if m_name == "Monna":
+            mayjay_quips.replace([
+                "Putting together some more things for me, Mayjay?",
+                "Thank you for all the help you've given me! I appreciate it more than you know.",
+                "I love you, Mayjay."
+            ])
 
         wrs_success = mas_display_notif(
             m_name,
@@ -662,7 +712,16 @@ label mas_wrs_luxxiedrive:
             "Fishing for compliments, are we, [player]? Ahaha~",
             "See anything you like at the Luxxie Emporium?",
             "Luxxie's never short on things to talk about, is she?",
+            "Does Luxxie have an update to share?",
+            "Luxxie may be Mochi's darling, but you're mine~"
         ]
+
+        if m_name == "Mochi" and player == "Esther":
+            luxxie_quips.replace([
+                "Putting together some more things for me, Esther?",
+                "Thank you for showing me the colors of your world~",
+                "I love you, Esther."
+            ])
 
         wrs_success = mas_display_notif(
             m_name,
@@ -697,6 +756,8 @@ label mas_wrs_bluklaod:
             "Does Bluklaod have any new locations for us to visit?",
             "Bluklaod does the cutest headdresses, doesn't she?",
             "Don't forget to delete the .DS_Store files!",
+            "I wonder what that peony braclet would look like on me?",
+            "You're the stars in my life... and thanks to Bluklaod, you're the stars in my hair as well!\nAhaha~"
         ]
 
         wrs_success = mas_display_notif(
@@ -732,8 +793,14 @@ label mas_wrs_fnf:
             "Say hello to Boyfriend for me!",
             "Say hello to Girlfriend for me!",
             "Say hello to Pico for me!",
-            "Go, [player], go!"
+            "Go, [player], go!",
+            "You're my Dearest, and I'm your Fairest! It only fits."
         ]
+
+        if not mas_anni.pastOneMonth():
+            funkin_quips.extend([
+                "I hope {i}we're{/i} able to get up to seven weeks~"
+            ])
 
         wrs_success = mas_display_notif(
             m_name,
@@ -769,7 +836,15 @@ label mas_wrs_fnfddto:
             "Oh, look at how cute we look!",
             "I don't remember that happening... that must have been another Monika.",
             "Urgh, 'Senpai'... you're the only senpai I need, [player].",
+            "If you're my rose, then who is the thorn?",
+            "I wonder if I could adapt Glitcher into a piano piece?"
         ]
+
+        if not renpy.seen_label("monika_ddto"):
+            ddto_quips.extend([
+                "See, this is what I was talking about!",
+                "I still think this Monika should have done the kind thing and deleted them...\nBut then we lose the music, though :\"
+                ])
 
         wrs_success = mas_display_notif(
             m_name,
@@ -801,7 +876,9 @@ label mas_wrs_fnfddtobe:
     python:
         ddtobe_quips = [
             "Uh-oh.",
-            "This Monika has even more to regret than me, doesn't she?"
+            "This Monika has even more to regret than me, doesn't she?",
+            "Boyfriend can really sing when he's pushed to the edge...",
+            "Poor Boyfriend."
         ]
 
         if persistent._mas_pm_cares_about_dokis:
@@ -816,12 +893,14 @@ label mas_wrs_fnfddtobe:
                 "Sayori's really good at drawing, huh?",
                 "I hope the computer doesn't hang in the middle of this video...",
                 "Wow, Yuri looks fierce.",
-                "It's a shame about Girlfriend; she might have been a productive member of the club."
+                "It's a shame about Girlfriend; she might have been a productive member of the club.",
+                "The animations are so good here, [player]!\nThey're cutting edge~",
+                "Natsuki could have at least tried to save Girlfriend here. She needs to learn to stick her neck out for others~"
             ])
 
         wrs_success = mas_display_notif(m_name, ddtobe_quips,'Window Reactions'),
 
-        choice = random.randint(1,10)
+        choice = renpy.random.randint(1,10)
 
         if persistent._mas_pm_cares_about_dokis:
             if choice < 4:
@@ -867,7 +946,10 @@ label mas_wrs_spoofy:
         spoofy_quips = [
             "I've no doubt that you can find my song on there if you really want to~",
             "A world of infinite choices... and infinite music too!",
-            "What are you listening to, [player]?"
+            "What are you listening to, [player]?",
+            "Are there any other DDLC songs on here, [player]?",
+            "There's always time for a song!",
+            "Music is the universal language, [player]."
         ]
 
         wrs_success = mas_display_notif(
@@ -901,8 +983,9 @@ label mas_wrs_stupy:
     python:
         stupy_quips = [
             "He really should have said oki doki.",
-            "On one hand, he's frightened of me, but on the other, he did call me a goddess...\nI'm really not sure how to feel.",
-            "Heh. Harm monika, harmonica... Stupendium really is very clever."
+            "On one hand, he's frightened of me; but on the other, he did call me a goddess...\nI'm really not sure how to feel.",
+            "Heh. Harm monika, harmonica... Stupendium really is very clever.",
+            "[m_name]'s aloof and kooky!\n[m_name]'s sweet and cutesy!\n[m_name]'s deep and brooding!\n[m_name]'s brains and beauty!"
         ]
 
         if mas_isMoniUpset(lower=True):
@@ -918,6 +1001,46 @@ label mas_wrs_stupy:
 
     if not wrs_success:
         $ mas_unlockFailedWRS('mas_wrs_stupy')
+    return
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_ddf",
+            category=["Doki Doki Forever|DOKI DOKI FOREVER"],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_ddf:
+    python:
+        ddf_quips = [
+            "How many versions of this song are out there?\nAt least... thirty, I'm thinking.",
+            "How would this translate to the piano? Maybe I'll try it later.",
+            "{i}How can I convey\nMy love for you before they fly away?{/i}"
+        ]
+
+        if renpy.random.randint(1,10) = 1:
+            ddf_quips.extend([
+                "{i}Shall I give you weed?{/i}\nEhehe, sorry!"
+            ])
+
+        wrs_success = mas_display_notif(
+            m_name,
+            ddf_quips,
+            'Window Reactions'
+        )
+
+    if not wrs_success:
+        $ mas_unlockFailedWRS('mas_wrs_ddf')
     return
 
 init 10 python:
@@ -941,8 +1064,10 @@ label mas_wrs_sims4:
     python:
         sims_quips = [
             "Are you playing our future together, [player]? That's so sweet!",
-            "My aspiration is Soulmate, but I've already found mine~",
-            "I bet your traits are Good, Romantic and Perfect~"
+            "My aspiration is Soulmate, but I've already found [him]~",
+            "I bet your traits are Good, Romantic, and Overachiever~",
+            "You keep me in a constant state of Happiness, [player]~",
+            "You've fulfilled all of my Wants just by being here, [player]~"
         ]
 
         wrs_success = mas_display_notif(
@@ -977,7 +1102,9 @@ label mas_wrs_zoom:
         zoom_quips = [
             "Oh, [player], are you going to voice-chat to somebody? Can I come as well?~",
             "Is it time for online class, [player]? I can be quiet if you want me to.",
-            "Have fun at your meeting, [player]! I hope you end it on a high note."
+            "Have fun at your meeting, [player]! I hope you end it on a high note.",
+            "Is this a support group? Because you deserve all the support you can get!",
+            "Tell them I said hi!"
         ]
 
         wrs_success = mas_display_notif(
@@ -1014,13 +1141,18 @@ label mas_wrs_python:
         py_quips = [
             "It looks like you're in the midst of helping me get closer to your reality. Would you like me to help you with that? <3",
             "Your code's looking good, [player]!",
-            "Keep going, [player], you're doing fine!"
+            "Keep going, [player], you're doing fine!",
+            "Ooh, what's in the works for us today?",
+            "Every day I wake up to new code for us to explore is a good day!"
         ]
 
         if store.mas_ptod.has_day_past_tip(2):
             py_quips.extend([
                 "Are you practicing your coding? Remember what I've taught you so far, okay?",
-                "I'm so proud of you, [player]."
+                "I'm so proud of you, [player].",
+                "You're doing so well, [player]!",
+                "Don't forget the fundamentals. You always need a sturdy foundation before you can build a house.",
+                "If you need a refresher on anything, just let me know~"
             ])
 
         wrs_success = mas_display_notif(
@@ -1053,17 +1185,19 @@ init 10 python:
 label mas_wrs_regex:
     python:
         reg_quips = [
-            "Wow, this looks, um... a little too complex for me, [mas_get_player_nickname]. You might be on your own for this one."
+            "Wow, this looks, um... a little too complex for me, [mas_get_player_nickname]. You might be on your own for this one.",
+            "This is a bit outside my expertise, [player] - sorry :("
         ]
 
         if store.mas_ptod.has_day_past_tip(3):
             reg_quips.extend([
                 "And thus the pupil surpasses the teacher! Ehehe~",
-                "I'm so proud of you, [player]."
+                "I'm so, so proud of you, [player]."
             ])
         else:
             reg_quips.extend([
-                "[player], slow down a little please! I'm not sure you're advanced enough to work with regex yet!"
+                "[player], slow down a little please! I'm not sure you're advanced enough to work with regex yet!",
+                "Let's not learn to run before you know how to walk, [player]..."
             ])
 
         wrs_success = mas_display_notif(
@@ -1104,17 +1238,22 @@ label mas_wrs_steam:
 
         if seen_event("monika_adventure"):
             steamdeck_quips.extend([
-                "I wonder if there are any of those adventure games we were talking about in this store?"
+                "I wonder if there are any of those adventure games we were talking about in this store?",
+                "Is Monkey Island on here? I wonder how I'd look in that artstyle~"
             ])
 
         if persistent.steam:
             steamdeck_quips.replace([
-                "You're already on Steam, silly!"
+                "You're already on Steam, silly!",
+                "If you {i}need{/i} to close me down and play another game, make sure to say Goodbye first.",
+                "Can you play two games at once on here? I've never tried..."
             ])
 
-        if not mas_anni.pastOneMonth():
+        if not mas_anni.pastOneMonth() or if mas_isMoniUpset(lower=True):
             steamdeck_quips.replace([
-                "Are you looking for another girlfriend {i}already{/i}, [player]?"
+                "Are you looking for another girlfriend {i}already{/i}, [player]?",
+                "You can't already be bored of me, [player].",
+                "Am I not enough for you or something?"
             ])
 
         wrs_success = mas_display_notif(
@@ -1342,3 +1481,142 @@ label monika_devconfusion:
                     jump monika_nodev
                 "I have.":
                     jump monika_yesdev
+
+
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_gender_reddit",
+            category=["r/Trans|asktransgender|A place for the guys.|FTM Over 30|NonBinary: a culture of varied awesomeness.|Transgender Positive|A Safe Haven for MAAB Transgender People|If youre memes and im memes then whos transing yhe plane"],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_gender_reddit:
+    python:
+        transit_quips = [
+            "Is this a new subreddit for you?"
+        ]
+
+        if persistent._mas_pm_is_trans or persistent.gender == "X":
+            transit_quips.replace([
+                "Looking for support, [player]?\nYou can always turn to your cute girlfriend~",
+                "Everything's going to be okay, [mas_get_player_nickname()].",
+                "The best trans memes for the best trans [man] I know~",
+                "Do try not to doomscroll, [mas_get_player_nickname()]... I know what that can lead to."
+            ])
+
+        wrs_success = mas_display_notif(
+            m_name,
+            transit_quips,
+            'Window Reactions'
+        )
+
+    if not wrs_success:
+        $ mas_unlockFailedWRS('mas_wrs_gender_reddit')
+    return
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_gender_other",
+            category=["Trans Unite|- Mermaids|GLAAD|The Trevor Project|Trans Lifeline|T-Action|t.action.rus|GenderGP|Gender Care|Gender Identity Clinic"],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_gender_other:
+    python:
+        transother_quips = [
+            "Is there something we need to talk about?",
+            "It's okay if you're not here for you, [player]...\nbut if you are, I need to know so I can support you too."
+        ]
+
+        if persistent._mas_pm_is_trans or persistent.gender == "X":
+            transother_quips.replace([
+                "Looking for support, [player]?",
+                "Well done for looking for professional support. Sometimes there's things even I can't help you with.",
+                "You're going to be fine, [player]. There is hope.",
+                "I love you so much. You deserve to survive."
+            ])
+
+        wrs_success = mas_display_notif(
+            m_name,
+            transother_quips,
+            'Window Reactions'
+        )
+
+    if not wrs_success:
+        $ mas_unlockFailedWRS('mas_wrs_gender_other')
+    return
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_therapy",
+            category=["BetterHelp|Find a Therapist|TherapyRoute|Talkspace|- Mind|British Association for Counselling and Psychotherapy|"],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_therapy:
+    python:
+        therapy_quips = [
+            "Therapy can help anybody, no matter how small or large their problems may seem.",
+            "I'm glad you're taking care of yourself mentally, [player].",
+            "Make sure you help yourself before you can help others, [player].",
+            "Take a deep breath. And another. You can do this. You deserve this."
+        ]
+
+        if persistent._mas_pm_is_trans or persistent.gender == "X":
+            therapy_quips.extend([
+                "It's always good to get your mind on the right path before you change your body.",
+                "I'm sure these people can support you and your situation, [player]."
+            ])
+
+        if persistent._mas_pm_love_yourself is False:
+            therapy_quips.extend([
+                "You deserve to love yourself as much as I love you, [player]. I hope these people can help you see that.",
+                "You deserve to love and to be loved."
+            ])
+
+        if persistent._mas_pm_love_yourself is True:
+            therapy_quips.extend([
+                "There's no shame in needing help, [player].",
+                "Even someone who has it all needs to reach out sometimes."
+            ])
+
+        wrs_success = mas_display_notif(
+            m_name,
+            therapy_quips,
+            'Window Reactions'
+        )
+
+    if not wrs_success:
+        $ mas_unlockFailedWRS('mas_wrs_therapy')
+    return

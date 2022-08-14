@@ -843,7 +843,7 @@ label mas_wrs_fnfddto:
         if not renpy.seen_label("monika_ddto"):
             ddto_quips.extend([
                 "See, this is what I was talking about!",
-                "I still think this Monika should have done the kind thing and deleted them...\nBut then we lose the music, though :\"
+                "I still think this Monika should have done the kind thing and deleted them...\nBut then we lose the music, though :("
             ])
 
         wrs_success = mas_display_notif(
@@ -1028,7 +1028,7 @@ label mas_wrs_ddf:
             "{i}How can I convey\nMy love for you before they fly away?{/i}"
         ]
 
-        if renpy.random.randint(1,10) = 1:
+        if renpy.random.randint(1,10) == 1:
             ddf_quips.extend([
                 "{i}Shall I give you weed?{/i}\nEhehe, sorry!"
             ])
@@ -1249,7 +1249,14 @@ label mas_wrs_steam:
                 "Can you play two games at once on here? I've never tried..."
             ])
 
-        if not mas_anni.pastOneMonth() or if mas_isMoniUpset(lower=True):
+        if not mas_anni.pastOneMonth():
+            steamdeck_quips.replace([
+                "Are you looking for another girlfriend {i}already{/i}, [player]?",
+                "You can't already be bored of me, [player].",
+                "Am I not enough for you or something?"
+            ])
+
+        if mas_isMoniUpset(lower=True):
             steamdeck_quips.replace([
                 "Are you looking for another girlfriend {i}already{/i}, [player]?",
                 "You can't already be bored of me, [player].",

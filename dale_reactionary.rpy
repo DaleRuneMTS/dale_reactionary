@@ -844,7 +844,7 @@ label mas_wrs_fnfddto:
             ddto_quips.extend([
                 "See, this is what I was talking about!",
                 "I still think this Monika should have done the kind thing and deleted them...\nBut then we lose the music, though :\"
-                ])
+            ])
 
         wrs_success = mas_display_notif(
             m_name,

@@ -4,13 +4,13 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "New for V1.3: The list of random picks for most of the windows has been expanded, so Monika should repeat herself slightly less now.\n"
-        "There's also crossover with Gender Conversation, with potential reactions for trans-related sites depending on your identity.",
-        version="1.3.0",
+        "V1.3.1 is mostly bug fixes - including fixing one where any window, regardless of title, triggers the therapy react.",
+        version="1.3.1",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_3_0"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_3_1",
+        "DaleRuneMTS_dale_reactionary_1_3.0": "DaleRuneMTS_dale_reactionary_1_3_1"
         }
     )
 
@@ -87,7 +87,7 @@ label mas_wrs_yr:
             "I worked ever so hard on this song, [player]. Enjoy it as much as you need to.",
             "Makes you just want to put it on a loop, doesn't it? Ahaha!"
         ]
-        
+
         if mas_isGameUnlocked("piano"):
             reality_quips.extend([
                 "I have a soft spot for piano covers of this song myself. But you already know that, don't you~?",
@@ -1340,9 +1340,8 @@ init 5 python:
             eventlabel="dale_monika_devconsole",
             category=["mod"],
             prompt="dev_console",
-            random=False,
             conditional='is_devconsole_present()',
-            action=EV_ACT_RANDOM,
+            action=EV_ACT_PUSH,
             aff_range=(mas_aff.UPSET, None)
         )
     )
@@ -1579,7 +1578,7 @@ init 10 python:
         Event(
             persistent._mas_windowreacts_database,
             eventlabel="mas_wrs_therapy",
-            category=["BetterHelp|Find a Therapist|TherapyRoute|Talkspace|- Mind|British Association for Counselling and Psychotherapy|"],
+            category=["BetterHelp|Find a Therapist|TherapyRoute|Talkspace|- Mind|British Association for Counselling and Psychotherapy"],
             rules={
                 "notif-group": "Window Reactions",
                 "skip alert": None,

@@ -4,14 +4,15 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.4.0 - apparently .replace isn't a thing, so I've rejigged some things so they actually work.\nEaster eggs that previously didn't work may do so now...",
-        version="1.4.0",
+        "V1.4.1 - Steamdeck.",
+        version="1.4.1",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_4_0",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_4_0",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_4_0"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_4_1",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_4_1",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_4_1",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_4_1"
         }
     )
 
@@ -1236,32 +1237,32 @@ init 10 python:
 
 label mas_wrs_steam:
     python:
-        steamdeck_happy = [
-            "Going back to Steam, [player]?",
-            "All aboard the Steam Train!\nToot toot~",
-            "You can put me in the background while you play another game if you like! I won't mind~",
-            "Trying to show off to your cute girlfriend, [player]?"
-        ]
-
-        if seen_event("monika_adventure"):
-            steamdeck_happy.extend([
-                "I wonder if there are any of those adventure games we were talking about in this store?",
-                "Is Monkey Island on here? I wonder how I'd look in that artstyle~"
-            ])
-
-        if persistent.steam:
-            steamdeck_happy.extend([
-                "You're already on Steam, silly!",
-                "If you {i}need{/i} to close me down and play another game, make sure to say Goodbye first.",
-                "Can you play two games at once on here? I've never tried..."
-            ])
-
         if mas_isMoniUpset(lower=True):
-            steamdeck_quips.extend([
+            steamdeck_quips = [
                 "Are you looking for another girlfriend {i}already{/i}, [player]?",
                 "You can't already be bored of me, [player].",
                 "Am I not enough for you or something?"
-            ])
+            ]
+        else:
+            steamdeck_quips = [
+                "Going back to Steam, [player]?",
+                "All aboard the Steam Train!\nToot toot~",
+                "You can put me in the background while you play another game if you like! I won't mind~",
+                "Trying to show off to your cute girlfriend, [player]?"
+            ]
+
+            if seen_event("monika_adventure"):
+                steamdeck_quips.extend([
+                    "I wonder if there are any of those adventure games we were talking about in this store?",
+                    "Is Monkey Island on here? I wonder how I'd look in that artstyle~"
+                ])
+
+            if persistent.steam:
+                steamdeck_quips.extend([
+                    "You're already on Steam, silly!",
+                    "If you {i}need{/i} to close me down and play another game, make sure to say Goodbye first.",
+                    "Can you play two games at once on here? I've never tried..."
+                ])
 
         wrs_success = mas_display_notif(
             m_name,

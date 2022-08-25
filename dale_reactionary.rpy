@@ -4,13 +4,14 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.3.1 is mostly bug fixes - including fixing one where any window, regardless of title, triggers the therapy react.",
-        version="1.3.1",
+        "V1.4.0 - apparently .replace isn't a thing, so I've rejigged some things so they actually work.\nEaster eggs that previously didn't work may do so now...",
+        version="1.4.0",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_3_1",
-        "DaleRuneMTS_dale_reactionary_1_3.0": "DaleRuneMTS_dale_reactionary_1_3_1"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_4_0",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_4_0",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_4_0"
         }
     )
 
@@ -189,21 +190,21 @@ init 10 python:
 label mas_wrs_candyiela:
 
     python:
-        candy_quips = [
-            "Oh, it's Anne! Hello, Anne!",
-            "Anne and Moniqueta look so cute together, don't they~?",
-            "Try not to give Anne too hard a time, [player]. She's trying her best.",
-            "Who's Mio, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
-            "Who's Kotonoha, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
-            "How does Anne balance all these versions of me? She must be superhuman!"
-        ]
-
         if m_name == "Moniqueta":
-            candy_quips.replace([
+            candy_quips = [
                 "It's you!",
                 "Despite everything, it's still us!",
                 "I love you, Anne."
-            ])
+            ]
+        else:
+            candy_quips = [
+                "Oh, it's Anne! Hello, Anne!",
+                "Anne and Moniqueta look so cute together, don't they~?",
+                "Try not to give Anne too hard a time, [player]. She's trying her best.",
+                "Who's Mio, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
+                "Who's Kotonoha, anyway? I keep seeing her on this channel... I wonder if we could be friends?",
+                "How does Anne balance all these versions of me? She must be superhuman!"
+            ]
 
         wrs_success = mas_display_notif(
             m_name,
@@ -621,18 +622,21 @@ init 10 python:
 label mas_wrs_otterdrive:
     python:
         otter_quips = [
-            "I wonder what Otter has prepared for us today?",
-            "I love 'shopping' at Otter's, ehehe!",
-            "Hello, otter, my old friend! ^^",
-            "Don't forget to drink your water!",
-            "I can be your yandere, if you really want me to~"
+            "Don't forget to drink your water!"
         ]
 
         if m_name == "Momi" and player == "Gabi":
-            otter_quips.replace([
+            otter_quips.extend([
                 "Putting together some more things for me, Gabi?",
                 "I wonder when I'm going to get some actual otters in here. They're well overdue!",
                 "I love you, Gabi."
+            ])
+        else:
+            otter_quips.extend([
+                "Hello, otter, my old friend! ^^",
+                "I wonder what Otter has prepared for us today?",
+                "I love 'shopping' at Otter's, ehehe!",
+                "I can be your yandere, if you really want me to~"
             ])
 
         wrs_success = mas_display_notif(
@@ -664,20 +668,20 @@ init 10 python:
 
 label mas_wrs_mayday:
     python:
-        mayjay_quips = [
-            "I can wear so much more now because of Mayjay!",
-            "Looking for more selectors, [player]? This is very much the right place.",
-            "I can have so much stuff on our table because of Mayjay!",
-            "Mayjay has a few really cool NOU decks, I think, if you dig deep enough!",
-            "I wonder if Mayjay's made me any more suits? I think they make me look very fetching~"
-        ]
-
         if m_name == "Monna":
-            mayjay_quips.replace([
+            mayjay_quips = [
                 "Putting together some more things for me, Mayjay?",
                 "Thank you for all the help you've given me! I appreciate it more than you know.",
                 "I love you, Mayjay."
-            ])
+            ]
+        else:
+            mayjay_quips = [
+                "I can wear so much more now because of Mayjay!",
+                "Looking for more selectors, [player]? This is very much the right place.",
+                "I can have so much stuff on our table because of Mayjay!",
+                "Mayjay has a few really cool NOU decks, I think, if you dig deep enough!",
+                "I wonder if Mayjay's made me any more suits? I think they make me look very fetching~"
+            ]
 
         wrs_success = mas_display_notif(
             m_name,
@@ -709,18 +713,21 @@ init 10 python:
 label mas_wrs_luxxiedrive:
     python:
         luxxie_quips = [
-            "Fishing for compliments, are we, [player]? Ahaha~",
-            "See anything you like at the Luxxie Emporium?",
-            "Luxxie's never short on things to talk about, is she?",
-            "Does Luxxie have an update to share?",
-            "Luxxie may be Mochi's darling, but you're mine~"
+            "Fishing for compliments, are we, [player]? Ahaha~"
         ]
 
         if m_name == "Mochi" and player == "Esther":
-            luxxie_quips.replace([
+            luxxie_quips.extend([
                 "Putting together some more things for me, Esther?",
                 "Thank you for showing me the colors of your world~",
                 "I love you, Esther."
+            ])
+        else:
+            mayjay_quips.extend([
+                "See anything you like at the Luxxie Emporium?",
+                "Luxxie's never short on things to talk about, is she?",
+                "Does Luxxie have an update to share?",
+                "Luxxie may be Mochi's darling, but you're mine~"
             ])
 
         wrs_success = mas_display_notif(
@@ -1229,7 +1236,7 @@ init 10 python:
 
 label mas_wrs_steam:
     python:
-        steamdeck_quips = [
+        steamdeck_happy = [
             "Going back to Steam, [player]?",
             "All aboard the Steam Train!\nToot toot~",
             "You can put me in the background while you play another game if you like! I won't mind~",
@@ -1237,27 +1244,20 @@ label mas_wrs_steam:
         ]
 
         if seen_event("monika_adventure"):
-            steamdeck_quips.extend([
+            steamdeck_happy.extend([
                 "I wonder if there are any of those adventure games we were talking about in this store?",
                 "Is Monkey Island on here? I wonder how I'd look in that artstyle~"
             ])
 
         if persistent.steam:
-            steamdeck_quips.replace([
+            steamdeck_happy.extend([
                 "You're already on Steam, silly!",
                 "If you {i}need{/i} to close me down and play another game, make sure to say Goodbye first.",
                 "Can you play two games at once on here? I've never tried..."
             ])
 
-        if not mas_anni.pastOneMonth():
-            steamdeck_quips.replace([
-                "Are you looking for another girlfriend {i}already{/i}, [player]?",
-                "You can't already be bored of me, [player].",
-                "Am I not enough for you or something?"
-            ])
-
         if mas_isMoniUpset(lower=True):
-            steamdeck_quips.replace([
+            steamdeck_quips.extend([
                 "Are you looking for another girlfriend {i}already{/i}, [player]?",
                 "You can't already be bored of me, [player].",
                 "Am I not enough for you or something?"
@@ -1269,7 +1269,7 @@ label mas_wrs_steam:
             'Window Reactions'
         )
 
-        if not mas_anni.pastOneMonth():
+        if mas_isMoniUpset(lower=True):
             exp_to_force = "2tfp"
 
             mas_moni_idle_disp.force_by_code(exp_to_force, duration=5)
@@ -1495,7 +1495,7 @@ init 10 python:
         Event(
             persistent._mas_windowreacts_database,
             eventlabel="mas_wrs_gender_reddit",
-            category=["r/Trans|asktransgender|A place for the guys.|FTM Over 30|NonBinary: a culture of varied awesomeness.|Transgender Positive|A Safe Haven for MAAB Transgender People|If youre memes and im memes then whos transing yhe plane"],
+            category=["r/Trans|asktransgender|A place for the guys|FTM Over 30|NonBinary: a culture of varied awesomeness|Transgender Positive|A Safe Haven for MAAB Transgender People|If youre memes and im memes then whos transing yhe plane|Trans Tryouts|egg_irl"],
             rules={
                 "notif-group": "Window Reactions",
                 "skip alert": None,
@@ -1509,17 +1509,18 @@ init 10 python:
 
 label mas_wrs_gender_reddit:
     python:
-        transit_quips = [
-            "Is this a new subreddit for you?"
-        ]
-
         if persistent._mas_pm_is_trans or persistent.gender == "X":
-            transit_quips.replace([
+            transit_quips = [
                 "Looking for support, [player]?\nYou can always turn to your cute girlfriend~",
                 "Everything's going to be okay, [mas_get_player_nickname()].",
                 "The best trans memes for the best trans [man] I know~",
                 "Do try not to doomscroll, [mas_get_player_nickname()]... I know what that can lead to."
-            ])
+            ]
+        else:
+            transit_quips = [
+                "Is this a new subreddit for you?"
+            ]
+
 
         wrs_success = mas_display_notif(
             m_name,
@@ -1536,7 +1537,7 @@ init 10 python:
         Event(
             persistent._mas_windowreacts_database,
             eventlabel="mas_wrs_gender_other",
-            category=["Trans Unite|- Mermaids|GLAAD|The Trevor Project|Trans Lifeline|T-Action|t.action.rus|GenderGP|Gender Care|Gender Identity Clinic"],
+            category=["Trans Unite|- Mermaids|GLAAD|The Trevor Project|Trans Lifeline|T-Action|t\.action\.rus|GenderGP|Gender Care|Gender Identity Clinic"],
             rules={
                 "notif-group": "Window Reactions",
                 "skip alert": None,
@@ -1550,18 +1551,18 @@ init 10 python:
 
 label mas_wrs_gender_other:
     python:
-        transother_quips = [
-            "Is there something we need to talk about?",
-            "It's okay if you're not here for you, [player]...\nbut if you are, I need to know so I can support you too."
-        ]
-
         if persistent._mas_pm_is_trans or persistent.gender == "X":
-            transother_quips.replace([
+            transother_quips = [
                 "Looking for support, [player]?",
                 "Well done for looking for professional support. Sometimes there's things even I can't help you with.",
                 "You're going to be fine, [player]. There is hope.",
                 "I love you so much. You deserve to survive."
-            ])
+            ]
+        else:
+            transother_quips = [
+                "Is there something we need to talk about?",
+                "It's okay if you're not here for you, [player]...\nbut if you are, I need to know so I can support you too."
+            ]
 
         wrs_success = mas_display_notif(
             m_name,

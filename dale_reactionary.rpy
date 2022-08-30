@@ -4,15 +4,16 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.4.1 - Steamdeck.",
-        version="1.4.1",
+        "V1.5.0 - the Goose update.",
+        version="1.5.0",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_4_1",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_4_1",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_4_1",
-        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_4_1"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_5_0",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_5_0",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_5_0",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_5_0",
+        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_5_0"
         }
     )
 
@@ -148,17 +149,17 @@ label mas_wrs_vannamelon:
 
         if persistent.gender == "M":
             vanna_quips.extend([
-                "It's the guy trapped in Monika's DDLC~",
+                "It's the guy trapped in Monika's DDLC~"
             ])
 
         if persistent.gender == "F":
             vanna_quips.extend([
-                "It's the girl trapped in Monika's DDLC~",
+                "It's the girl trapped in Monika's DDLC~"
             ])
 
         if persistent.gender != "M" or "F":
             vanna_quips.extend([
-                "It's the [player] trapped in Monika's DDLC~",
+                "It's the [player] trapped in Monika's DDLC~"
             ])
 
         wrs_success = mas_display_notif(
@@ -392,7 +393,7 @@ label mas_wrs_gamegrumps:
         if not persistent._mas_pm_cares_about_dokis:
             aridan_quips.extend([
                 "I'd much rather take something I personally enjoy personally enjoy enjoy is that the word enjoy enjoy proper word.",
-                "Oh, is that Clifford the big red stab wound?"
+                "Oh, is that Clifford the big red stab wound?",
                 "I hope they can stop Natsuki before she reduces! Ehehe~",
                 "That's not love, that's Fred-- I mean [player].",
                 "What's wrong, Grumps?"
@@ -428,17 +429,31 @@ init 10 python:
 label mas_wrs_pande:
 
     python:
-        pande_quips = [
-            "Thanks for checking out my work!",
-            "Sorry for the narcissism; I just couldn't resist. ;)",
-            "No obligation to stay here, of course! But it's great that you came."
-        ]
+        if m_name == "Harmoni" and player == "Dale":
+            pande_quips = [
+                "Going to work, [mas_get_player_nickname()]?",
+                "Don't be narcissistic, Dale, it doesn't look good on you.",
+                "I love you, Dale."
+            ]
 
-        wrs_success = mas_display_notif(
-            'Dale',
-            pande_quips,
-            'Window Reactions'
-        )
+            wrs_success = mas_display_notif(
+                m_name,
+                pande_quips,
+                'Window Reactions'
+            )
+
+        else:
+            pande_quips = [
+                "Thanks for checking out my work!",
+                "Sorry for the narcissism; I just couldn't resist. ;)",
+                "No obligation to stay here, of course! But it's great that you came."
+            ]
+
+            wrs_success = mas_display_notif(
+                'Dale',
+                pande_quips,
+                'Window Reactions'
+            )
 
         if not wrs_success:
             mas_unlockFailedWRS('mas_wrs_pande')
@@ -488,7 +503,7 @@ init 10 python:
         Event(
             persistent._mas_windowreacts_database,
             eventlabel="mas_wrs_masdiscord",
-            category=["r-masfandom|monika-gallery|just-monika|submod-discussion|teaching-and-advice"],
+            category=["r-masfandom|monika-gallery|just-monika|submod-discussion|coding-advice"],
             rules={
                 "notif-group": "Window Reactions",
                 "skip alert": None,
@@ -1627,4 +1642,94 @@ label mas_wrs_therapy:
 
     if not wrs_success:
         $ mas_unlockFailedWRS('mas_wrs_therapy')
+    return
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_goose",
+            category=["DesktopGoose.exe|Goose \"Not-epad\""],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_goose:
+    python:
+        if not renpy.seen_label("monika_hjonk_detected"):
+            goose_quips = [
+                "???",
+                "[player]?",
+                "Um...",
+                "Wait..."
+            ]
+            queueEvent('monika_hjonk_detected')
+
+        else:
+            goose_quips = [
+                "Oh, it's the goose!",
+                "Honk honk?",
+                "Honk honk!"
+            ]
+
+        wrs_success = mas_display_notif(
+            m_name,
+            goose_quips,
+            'Window Reactions'
+        )
+
+        if not wrs_success:
+            mas_unlockFailedWRS('mas_wrs_goose')
+    return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_hjonk_detected"
+        )
+    )
+
+label monika_hjonk_detected:
+    m 1wtc "..."
+    m 1etd "[player], is that a goose?{nw}"
+    $ _history_list.pop()
+    menu:
+        m "[player], is that a goose?{fast}"
+        "It sure is.":
+            m 1ruc "Okay, good, I'm not seeing things."
+        "What? What goose? What are you talking about?":
+            m 3efd "You seriously can't see that?"
+            m 4wfo "It's a {i}goose{/i}, [player]."
+    m 1esc "..."
+    m 3eto "Follow-up question: {i}why{/i} is there a goose?{nw}"
+    $ _history_list.pop()
+    menu:
+        m "Follow-up question: {i}why{/i} is there a goose?{fast}"
+        "I thought it'd be cute.":
+            m 3esu "Heh, well..."
+            m 1huu "You weren't wrong. It {i}is{/i} kinda cute!"
+            m 1eua "Just make sure it doesn't try and... separate us, okay?"
+            m 1eud "Geese can be as destructive as they can be sweet."
+            m 1nub "I don't want it to try and drag me away in the middle of our conversation."
+        "It's our new pet!":
+            m 1wub "Aw, [player]!"
+            m 1eub "That's very thoughtful of you."
+            if renpy.seen_label("monika_pets"):
+                m 4eub "And since it's its own program, it's not going to suffer the same fate as a quetzal might!"
+            m 1fua "Thank you."
+            m 1eua "Just make sure it doesn't try and... separate us, okay?"
+            m 3eud "Geese can be fun to take care off for a while..."
+            m "...but they're also destructive."
+            m 1nub "I don't want it to try and drag me away in the middle of our conversation."
+        "HJONK HJONK":
+            m 1wuc "..."
+            m 1esp "Alright then."
     return

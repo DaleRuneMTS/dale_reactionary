@@ -4,3 +4,5 @@ Does Monika need to react to more things? Yes, yes she does. So here is her reac
 To install: place in your DDLC /game directory, under the /Submods folder - newly created, if necessary.
 
 Important: To get updates on this submod as they happen, you MUST have the Submod Updater Plugin! Otherwise you will be stuck on previous versions. Download this here: https://github.com/Booplicate/MAS-Submods-SubmodUpdaterPlugin
+
+Note: The goose conversation will currently only work when the goose goes into your notepad.

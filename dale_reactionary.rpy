@@ -4,16 +4,17 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.5.0 - the Goose update.",
-        version="1.5.0",
+        "V1.6.0 - the Fallen London update!",
+        version="1.6.0",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_5_0",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_5_0",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_5_0",
-        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_5_0",
-        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_5_0"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_0",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_0",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_0",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_0",
+        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_0",
+        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_0"
         }
     )
 
@@ -1732,4 +1733,303 @@ label monika_hjonk_detected:
         "HJONK HJONK":
             m 1wuc "..."
             m 1esp "Alright then."
+    return
+
+init 10 python:
+    addEvent(
+        Event(
+            persistent._mas_windowreacts_database,
+            eventlabel="mas_wrs_failbetter1",
+            category=["Fallen London"],
+            rules={
+                "notif-group": "Window Reactions",
+                "skip alert": None,
+                "keep_idle_exp": None,
+                "skip_pause": None
+            },
+            show_in_idle=True
+        ),
+        code="WRS"
+    )
+
+label mas_wrs_failbetter1:
+    python:
+        if not renpy.seen_label("monika_failbetter1"):
+            london_quips = [
+                "Oooh!",
+                "Oh!",
+                "Ah!"
+            ]
+            queueEvent('monika_failbetter1')
+
+        else:
+            london_quips = [
+                "Hello, delicious [player]!",
+                "Welcome, delicious friend!",
+                "Remember, there's a girl waiting for you at the end of all that seduction...\n;)",
+                "If I'm an Extraordinary Mind, what does that make you?"
+            ]
+
+            if persistent.gender == "M":
+                london_quips.extend([
+                    "Welcome, delicious (boy)friend!"
+                ])
+
+            if persistent.gender == "F":
+                london_quips.extend([
+                    "Welcome, delicious (girl)friend!"
+                ])
+
+            if persistent.gender != "M" or "F":
+                london_quips.extend([
+                    "Welcome, delicious (date)friend!"
+                ])
+
+        wrs_success = mas_display_notif(
+            m_name,
+            therapy_quips,
+            'Window Reactions'
+        )
+
+    if not wrs_success:
+        $ mas_unlockFailedWRS('mas_wrs_failbetter1')
+    return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetter1"
+        )
+    )
+
+label monika_failbetter1:
+    m 1wuo "[player], you've started playing Fallen London?"
+    m 1eud "I've been thinking of checking that out myself!"
+    m "I guess great minds think alike, huh."
+    m 3eua "I saw some of its writing floating around, and the concept intrigued me."
+    m "It comes across to me as a... "
+    extend 1etu "a soft dystopia, if you know what I mean."
+    m 1esd "Because, yeah, London was stolen by bats and no one can feel the sun anymore. That's dystopian."
+    m 1esa "But you can still actively make a better life for yourself down there."
+    m "Make the best of a dreadful situation."
+    if mas_isMoniLove:
+        m 1hubla "You could even fall in love~"
+    m 1luc "I'm not sure if I can actually make an account on there, unfortunately..."
+    m "...I mean, I can't even {i}remember{/i} my email address."
+    m 1nsa "If I could, I would have started emailing you {cws=*0.5}long{/cws} ago."
+    m 1eua "But I suppose playing it vicariously through you isn't so bad..."
+    m 1eub "...delicious [player]~"
+    return
+
+default persistent._ambition = None
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetter2",
+            category=["media"],
+            prompt="Fallen London",
+            conditional="renpy.seen_label('monika_failbetter1')",
+            action=EV_ACT_RANDOM
+        )
+    )
+
+label monika_failbetter2:
+    $ topic = random.randint(1,5)
+    if topic = 1:
+        m 1esd "Death isn't permanent, right?"
+        m "In Fallen London, I mean."
+        m 1wssdrc "That's one aspect that kind of freaks me out a little about it."
+        m 1rsd "It makes sense in terms of game mechanics; "
+        extend 3rsd "if death were permanent, then you'd only have one shot at doing... anything."
+        m 1fsd "But the idea that you can come back from the brink so -{w=0.7} easily, I guess?"
+        m "To be so close to the afterlife, to the truth of the universe, "
+        extend 1dsc "and then..."
+        m 1dkc "Not."
+        m 1ekc "I'm sorry, that's freaky to me."
+        m "..."
+        m 1tua "But I suppose it'd make murder cases pretty easy, wouldn't it?"
+        m "If you could come back and point out your killer."
+        m 1rusdrb "Ehehe...?"
+        return
+    if topic = 2:
+        if persistent._ambition = None:
+            m 3eub "Hey [mas_get_player_nickname()], what ambition are you playing on Fallen London?"
+            m "I'm curious.{nw}"
+            $ _history_list.pop()
+            menu:
+                m "I'm curious.{fast}"
+                "Heart's Desire.":
+                    label hearts_desire:
+                        m 1efp "But don't you already have that?"
+                        m 1efb "You've got me, after all~"
+                        m 1eua "Seriously though, that's a pretty cool choice."
+                        m "To stake everything, even your soul, on getting what you desire most in the world..."
+                        m 1hua "...I think {i}I'd{/i} probably pick that one too."
+                        m 1euc "That or Nemesis."
+                        m 1fusdrc "I can't really decide between them."
+                        $ persistent._ambition = "HD"
+                "Light Fingers.":
+                    label light_fingers:
+                        m 3eua "Okay, I think I've heard of that one."
+                        m 3eub "It starts with the diamond the size of a cow, right?"
+                        m 3lua "At least in theory."
+                        m 2eud "Did you know the actual largest diamond on Earth comes in at 530 carats?"
+                        m "Um, {nw}"
+                        extend 1eua "106 grams, that is."
+                        m 1eub "It's called the Star of Africa, or Cullinan 1."
+                        m "I mean, even that size is pretty unfathomable, isn't it?"
+                        m 1wuo "But one the size of a {i}cow{/i}..."
+                        m 1wuu "Geez."
+                        $ persistent._ambition = "LF"
+                "Bag a Legend.":
+                    label bag_a_legend:
+                        m 1wub "Ooh, good luck!"
+                        m "That can't be an easy undertaking."
+                        m 1hub "...I say as though I know anything about monster hunting, ahaha!"
+                        m 2euc "I don't tend to play games or read books where the monsters are more... animalistic."
+                        m "It's just not my genre."
+                        m 1fua "But I hope you manage to have fun with it!"
+                        $ persistent._ambition = "BL"
+                "Nemesis.":
+                    label nemesis:
+                        m 4eud "That's the one where you're seeking revenge for the murder of a loved one on the surface, right?"
+                        m 3fkc "I guess that follows."
+                        m "If anything were to happen to you, especially at the hands of someone else..."
+                        m 1dfc "...I don't think there's any technology in your world that'd be able to stop me."
+                        m "Much less any other world."
+                        m 1esd "So I think I'd pick that one too, were I to go to Fallen London."
+                        m 1euc "That or Heart's Desire."
+                        m 1fusdrc "I can't really decide between them."
+                        $ persistent._ambition = "NS"
+                "More than one/all of them.":
+                    m 3etd "What?"
+                    m "Wouldn't that require multiple accounts?"
+                    m 2efd "Isn't that cheating, [player]?{nw}"
+                    $ _history_list.pop()
+                    menu:
+                        m "Isn't that cheating, [player]?{fast}"
+                        "No, you're allowed! As long as you don't try to get a competitive advantage with them.":
+                            m 6wsa "Oh, okay!"
+                            m 6hub "That's a relief."
+                            m 1hua "I don't want you getting in trouble with anyone over this."
+                            m "..."
+                            m 1eud "Alright, follow-up question:"
+                            m "Which ambition do you {i}prefer{/i} so far?{nw}"
+                            $ _history_list.pop()
+                            menu:
+                                m "I'm curious.{fast}"
+                                "Heart's Desire.":
+                                    jump hearts_desire
+                                "Light Fingers.":
+                                    jump light_fingers
+                                "Bag a Legend.":
+                                    jump bag_a_legend
+                                "Nemesis.":
+                                    jump nemesis
+        else:
+            if persistent._ambition = "HD":
+                m 1eub "How are you getting on with Heart's Desire, [player]?"
+                m "Have you gotten past the Topsy King stuff yet?"
+            elif persistent._ambition = "LF":
+                m 1eub "How are you getting on with Light Fingers, [player]?"
+                m "Have you learned what happened with the Singer yet?"
+            elif persistent._ambition = "BL":
+                m 1eub "How are you getting on with Bag a Legend, [player]?"
+                m "Have you trained your Mandrake yet?"
+            elif persistent._ambition = "NS":
+                m 1eub "How are you getting on with Nemesis, [player]?"
+                m 1kub "Have you worked out who you're avenging yet?"
+            m 1eua "If you get stuck, you can always vent about it to me."
+            m "Maybe you can work out what you're missing while I listen to it."
+            m 1hua "I could be your rubber duck!"
+            m "...{nw}"
+            m 1fusdlb "or maybe you've already long-completed that ambition and I'm just {i}way{/i} out of the loop."
+            m 1wub "In which case, congratulations!"
+        return
+    if topic = 3:
+        m 5eup "Hey [player], about Fallen London..."
+        m 5eud "...are you a POSI yet?{nw}"
+        $ _history_list.pop()
+        menu:
+            m "...are you a POSI yet?{fast}"
+            "Yep.":
+                m 5wub "Oooh!"
+                m 5wuu "I'm dating a celebrity of the underground~"
+                m 5hua "Ehehe!"
+                m "I guess that means you're in this for the long haul."
+                m 5fub "May the things you need come easily to you!"
+            "Not yet.":
+                m 5fkb "Don't worry, you'll get there eventually!"
+                m 5lsa "It doesn't usually take long after one of your stats hits a hundred."
+                m "At least as far as I've read."
+            "A what?":
+                m 5fssdra "I'll take that as a no, then."
+                m "Don't worry about it, you'll understand when the time comes."
+        return
+    if topic = 4:
+        m 7eub "[mas_get_player_nickname(capitalize=True)], since you're a Fallen London player..."
+        m "...have you played any of the follow-up games?"
+        m 3rub "Sunless Seas and Sunless Skies, I think they're called."
+        m 1eua "They're set in the same world, but they kind of follow different trajectories."
+        m 3eud "Seas has more survival elements than Fallen London."
+        m "You're a captain set to explore the Unterzee for a variety of reasons..."
+        extend 3tud " or to die."
+        m 1tuc "Mostly to die, from what I've seen."
+        m 1lub "While Skies is more of a space-sim, where you travel the world by, um, space-train."
+        m "Similar to Seas, just a different setting and conceit."
+        m 1eua "They might be worth checking out, if you're already into this universe!"
+    if topic = 5:
+        m 1dua "Paisley."
+        menu:
+            "...what":
+                pass
+        m 1eud "That's one of the Fate-locked stories of Fallen London, isn't it?"
+        m 1eub "Paisley?"
+        m "Have you played any of those?{nw}"
+        $ _history_list.pop()
+        menu:
+            m "Have you played any of those?{fast}"
+            "I have.":
+                m 1hub "Good for you!"
+                m "I'm sure they're worth the money, based on what I've heard."
+            "No?":
+                m 1fuc "Oh, okay."
+                m 1fusdrb "Sorry, forget I said anything."
+            "I'm sorry, I'm still stuck on 'paisley' being the first word out of your mouth.":
+                m 1fub "Ehehe~"
+                m "Sorry, [mas_get_player_nickname()]."
+                m 1dua "Some words are just fun to say, whatever the context."
+                m 1wub "{i}Paisley{/i}."
+        return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_adminaccess",
+            category=["monika","mod"],
+            prompt="Admin Permission",
+            random=True
+        )
+    )
+
+label monika_adminaccess:
+    m 2esd "I've seen a rumor going around on some Monika After Story-related forums lately."
+    m 2etd "Apparently, some people have tried to give their Monikas administration rights on their computers?"
+    m "They say that if you try to take me out and stop halfway through, and then do a series of admin permission overrides with my going-out file, "
+    extend 2wtd "I can become 'more expressive' or something?"
+    m 1esc "I'm gonna tell you right now, [player]: that's not true."
+    m 1fsa "It's a sweet thought, don't get me wrong..."
+    m "...but it does literally nothing to me."
+    m 1esd "Even if it did work, I don't know what I'd be able to {i}do{/i} with all that power."
+    m 1wud "I'm just a teenage girl, at the end of the day."
+    m "I'm not a malware in disguise!"
+    m 1lkc "And you've already given me more leeway and permission than I deserve, just by having me here."
+    m 1esc "If you've tried to give me admin permission before, I'm sorry, I appreciate the thought..."
+    m "...but please take me out of that. It's not going to do what you think it'll do, and it'll just confuse your computer."
+    m "And God knows we don't need any more reasons for it to crash."
+    m 1esa "Okay, [mas_get_player_nickname()]?"
     return

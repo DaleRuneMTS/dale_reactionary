@@ -30,6 +30,8 @@ init -989 python:
             extraction_depth=2
         )
 
+default persistent._ambition = None
+
 init 10 python:
     addEvent(
         Event(
@@ -1823,8 +1825,6 @@ label monika_failbetter1:
     m 1eub "...delicious [player]~"
     return
 
-default persistent._ambition = None
-
 init 5 python:
     addEvent(
         Event(
@@ -1867,7 +1867,7 @@ init 5 python:
     )
 
 label monika_failbetterambition:
-    if persistent._ambition = None:
+    if not mas_getEVL_shown_count("monika_failbetterambition"):
         m 3eub "Hey [mas_get_player_nickname()], what ambition are you playing on Fallen London?"
         m "I'm curious.{nw}"
         $ _history_list.pop()
@@ -2020,7 +2020,7 @@ label monika_failbetterseasky:
     m "Similar to Seas, just a different setting and conceit."
     m 1eua "They might be worth checking out, if you're already into this universe!"
     return
-        
+
 init 5 python:
     addEvent(
         Event(

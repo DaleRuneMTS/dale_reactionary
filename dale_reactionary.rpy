@@ -1829,182 +1829,233 @@ init 5 python:
     addEvent(
         Event(
             persistent.event_database,
-            eventlabel="monika_failbetter2",
+            eventlabel="monika_failbetterdeath",
             category=["media"],
-            prompt="Fallen London",
+            prompt="Fallen London: Death",
             conditional="renpy.seen_label('monika_failbetter1')",
             action=EV_ACT_RANDOM
         )
     )
 
-label monika_failbetter2:
-    $ topic = random.randint(1,5)
-    if topic = 1:
-        m 1esd "Death isn't permanent, right?"
-        m "In Fallen London, I mean."
-        m 1wssdrc "That's one aspect that kind of freaks me out a little about it."
-        m 1rsd "It makes sense in terms of game mechanics; "
-        extend 3rsd "if death were permanent, then you'd only have one shot at doing... anything."
-        m 1fsd "But the idea that you can come back from the brink so -{w=0.7} easily, I guess?"
-        m "To be so close to the afterlife, to the truth of the universe, "
-        extend 1dsc "and then..."
-        m 1dkc "Not."
-        m 1ekc "I'm sorry, that's freaky to me."
-        m "..."
-        m 1tua "But I suppose it'd make murder cases pretty easy, wouldn't it?"
-        m "If you could come back and point out your killer."
-        m 1rusdrb "Ehehe...?"
-        return
-    if topic = 2:
-        if persistent._ambition = None:
-            m 3eub "Hey [mas_get_player_nickname()], what ambition are you playing on Fallen London?"
-            m "I'm curious.{nw}"
-            $ _history_list.pop()
-            menu:
-                m "I'm curious.{fast}"
-                "Heart's Desire.":
-                    label hearts_desire:
-                        m 1efp "But don't you already have that?"
-                        m 1efb "You've got me, after all~"
-                        m 1eua "Seriously though, that's a pretty cool choice."
-                        m "To stake everything, even your soul, on getting what you desire most in the world..."
-                        m 1hua "...I think {i}I'd{/i} probably pick that one too."
-                        m 1euc "That or Nemesis."
-                        m 1fusdrc "I can't really decide between them."
-                        $ persistent._ambition = "HD"
-                "Light Fingers.":
-                    label light_fingers:
-                        m 3eua "Okay, I think I've heard of that one."
-                        m 3eub "It starts with the diamond the size of a cow, right?"
-                        m 3lua "At least in theory."
-                        m 2eud "Did you know the actual largest diamond on Earth comes in at 530 carats?"
-                        m "Um, {nw}"
-                        extend 1eua "106 grams, that is."
-                        m 1eub "It's called the Star of Africa, or Cullinan 1."
-                        m "I mean, even that size is pretty unfathomable, isn't it?"
-                        m 1wuo "But one the size of a {i}cow{/i}..."
-                        m 1wuu "Geez."
-                        $ persistent._ambition = "LF"
-                "Bag a Legend.":
-                    label bag_a_legend:
-                        m 1wub "Ooh, good luck!"
-                        m "That can't be an easy undertaking."
-                        m 1hub "...I say as though I know anything about monster hunting, ahaha!"
-                        m 2euc "I don't tend to play games or read books where the monsters are more... animalistic."
-                        m "It's just not my genre."
-                        m 1fua "But I hope you manage to have fun with it!"
-                        $ persistent._ambition = "BL"
-                "Nemesis.":
-                    label nemesis:
-                        m 4eud "That's the one where you're seeking revenge for the murder of a loved one on the surface, right?"
-                        m 3fkc "I guess that follows."
-                        m "If anything were to happen to you, especially at the hands of someone else..."
-                        m 1dfc "...I don't think there's any technology in your world that'd be able to stop me."
-                        m "Much less any other world."
-                        m 1esd "So I think I'd pick that one too, were I to go to Fallen London."
-                        m 1euc "That or Heart's Desire."
-                        m 1fusdrc "I can't really decide between them."
-                        $ persistent._ambition = "NS"
-                "More than one/all of them.":
-                    m 3etd "What?"
-                    m "Wouldn't that require multiple accounts?"
-                    m 2efd "Isn't that cheating, [player]?{nw}"
-                    $ _history_list.pop()
-                    menu:
-                        m "Isn't that cheating, [player]?{fast}"
-                        "No, you're allowed! As long as you don't try to get a competitive advantage with them.":
-                            m 6wsa "Oh, okay!"
-                            m 6hub "That's a relief."
-                            m 1hua "I don't want you getting in trouble with anyone over this."
-                            m "..."
-                            m 1eud "Alright, follow-up question:"
-                            m "Which ambition do you {i}prefer{/i} so far?{nw}"
-                            $ _history_list.pop()
-                            menu:
-                                m "I'm curious.{fast}"
-                                "Heart's Desire.":
-                                    jump hearts_desire
-                                "Light Fingers.":
-                                    jump light_fingers
-                                "Bag a Legend.":
-                                    jump bag_a_legend
-                                "Nemesis.":
-                                    jump nemesis
-        else:
-            if persistent._ambition = "HD":
-                m 1eub "How are you getting on with Heart's Desire, [player]?"
-                m "Have you gotten past the Topsy King stuff yet?"
-            elif persistent._ambition = "LF":
-                m 1eub "How are you getting on with Light Fingers, [player]?"
-                m "Have you learned what happened with the Singer yet?"
-            elif persistent._ambition = "BL":
-                m 1eub "How are you getting on with Bag a Legend, [player]?"
-                m "Have you trained your Mandrake yet?"
-            elif persistent._ambition = "NS":
-                m 1eub "How are you getting on with Nemesis, [player]?"
-                m 1kub "Have you worked out who you're avenging yet?"
-            m 1eua "If you get stuck, you can always vent about it to me."
-            m "Maybe you can work out what you're missing while I listen to it."
-            m 1hua "I could be your rubber duck!"
-            m "...{nw}"
-            m 1fusdlb "or maybe you've already long-completed that ambition and I'm just {i}way{/i} out of the loop."
-            m 1wub "In which case, congratulations!"
-        return
-    if topic = 3:
-        m 5eup "Hey [player], about Fallen London..."
-        m 5eud "...are you a POSI yet?{nw}"
+label monika_failbetterdeath:
+    m 1esd "Death isn't permanent, right?"
+    m "In Fallen London, I mean."
+    m 1wssdrc "That's one aspect that kind of freaks me out a little about it."
+    m 1rsd "It makes sense in terms of game mechanics; "
+    extend 3rsd "if death were permanent, then you'd only have one shot at doing... anything."
+    m 1fsd "But the idea that you can come back from the brink so -{w=0.7} easily, I guess?"
+    m "To be so close to the afterlife, to the truth of the universe, "
+    extend 1dsc "and then..."
+    m 1dkc "Not."
+    m 1ekc "I'm sorry, that's freaky to me."
+    m "..."
+    m 1tua "But I suppose it'd make murder cases pretty easy, wouldn't it?"
+    m "If you could come back and point out your killer."
+    m 1rusdrb "Ehehe...?"
+    return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetterambition",
+            category=["media"],
+            prompt="Fallen London: Ambitions",
+            conditional="renpy.seen_label('monika_failbetter1')",
+            action=EV_ACT_RANDOM
+        )
+    )
+
+label monika_failbetterambition:
+    if persistent._ambition = None:
+        m 3eub "Hey [mas_get_player_nickname()], what ambition are you playing on Fallen London?"
+        m "I'm curious.{nw}"
         $ _history_list.pop()
         menu:
-            m "...are you a POSI yet?{fast}"
-            "Yep.":
-                m 5wub "Oooh!"
-                m 5wuu "I'm dating a celebrity of the underground~"
-                m 5hua "Ehehe!"
-                m "I guess that means you're in this for the long haul."
-                m 5fub "May the things you need come easily to you!"
-            "Not yet.":
-                m 5fkb "Don't worry, you'll get there eventually!"
-                m 5lsa "It doesn't usually take long after one of your stats hits a hundred."
-                m "At least as far as I've read."
-            "A what?":
-                m 5fssdra "I'll take that as a no, then."
-                m "Don't worry about it, you'll understand when the time comes."
-        return
-    if topic = 4:
-        m 7eub "[mas_get_player_nickname(capitalize=True)], since you're a Fallen London player..."
-        m "...have you played any of the follow-up games?"
-        m 3rub "Sunless Seas and Sunless Skies, I think they're called."
-        m 1eua "They're set in the same world, but they kind of follow different trajectories."
-        m 3eud "Seas has more survival elements than Fallen London."
-        m "You're a captain set to explore the Unterzee for a variety of reasons..."
-        extend 3tud " or to die."
-        m 1tuc "Mostly to die, from what I've seen."
-        m 1lub "While Skies is more of a space-sim, where you travel the world by, um, space-train."
-        m "Similar to Seas, just a different setting and conceit."
-        m 1eua "They might be worth checking out, if you're already into this universe!"
-    if topic = 5:
-        m 1dua "Paisley."
-        menu:
-            "...what":
-                pass
-        m 1eud "That's one of the Fate-locked stories of Fallen London, isn't it?"
-        m 1eub "Paisley?"
-        m "Have you played any of those?{nw}"
-        $ _history_list.pop()
-        menu:
-            m "Have you played any of those?{fast}"
-            "I have.":
-                m 1hub "Good for you!"
-                m "I'm sure they're worth the money, based on what I've heard."
-            "No?":
-                m 1fuc "Oh, okay."
-                m 1fusdrb "Sorry, forget I said anything."
-            "I'm sorry, I'm still stuck on 'paisley' being the first word out of your mouth.":
-                m 1fub "Ehehe~"
-                m "Sorry, [mas_get_player_nickname()]."
-                m 1dua "Some words are just fun to say, whatever the context."
-                m 1wub "{i}Paisley{/i}."
-        return
+            m "I'm curious.{fast}"
+            "Heart's Desire.":
+                label hearts_desire:
+                    m 1efp "But don't you already have that?"
+                    m 1efb "You've got me, after all~"
+                    m 1eua "Seriously though, that's a pretty cool choice."
+                    m "To stake everything, even your soul, on getting what you desire most in the world..."
+                    m 1hua "...I think {i}I'd{/i} probably pick that one too."
+                    m 1euc "That or Nemesis."
+                    m 1fusdrc "I can't really decide between them."
+                    $ persistent._ambition = "HD"
+            "Light Fingers.":
+                label light_fingers:
+                    m 3eua "Okay, I think I've heard of that one."
+                    m 3eub "It starts with the diamond the size of a cow, right?"
+                    m 3lua "At least in theory."
+                    m 2eud "Did you know the actual largest diamond on Earth comes in at 530 carats?"
+                    m "Um, {nw}"
+                    extend 1eua "106 grams, that is."
+                    m 1eub "It's called the Star of Africa, or Cullinan 1."
+                    m "I mean, even that size is pretty unfathomable, isn't it?"
+                    m 1wuo "But one the size of a {i}cow{/i}..."
+                    m 1wuu "Geez."
+                    $ persistent._ambition = "LF"
+            "Bag a Legend.":
+                label bag_a_legend:
+                    m 1wub "Ooh, good luck!"
+                    m "That can't be an easy undertaking."
+                    m 1hub "...I say as though I know anything about monster hunting, ahaha!"
+                    m 2euc "I don't tend to play games or read books where the monsters are more... animalistic."
+                    m "It's just not my genre."
+                    m 1fua "But I hope you manage to have fun with it!"
+                    $ persistent._ambition = "BL"
+            "Nemesis.":
+                label nemesis:
+                    m 4eud "That's the one where you're seeking revenge for the murder of a loved one on the surface, right?"
+                    m 3fkc "I guess that follows."
+                    m "If anything were to happen to you, especially at the hands of someone else..."
+                    m 1dfc "...I don't think there's any technology in your world that'd be able to stop me."
+                    m "Much less any other world."
+                    m 1esd "So I think I'd pick that one too, were I to go to Fallen London."
+                    m 1euc "That or Heart's Desire."
+                    m 1fusdrc "I can't really decide between them."
+                    $ persistent._ambition = "NS"
+            "More than one/all of them.":
+                m 3etd "What?"
+                m "Wouldn't that require multiple accounts?"
+                m 2efd "Isn't that cheating, [player]?{nw}"
+                $ _history_list.pop()
+                menu:
+                    m "Isn't that cheating, [player]?{fast}"
+                    "No, you're allowed! As long as you don't try to get a competitive advantage with them.":
+                        m 6wsa "Oh, okay!"
+                        m 6hub "That's a relief."
+                        m 1hua "I don't want you getting in trouble with anyone over this."
+                        m "..."
+                        m 1eud "Alright, follow-up question:"
+                        m "Which ambition do you {i}prefer{/i} so far?{nw}"
+                        $ _history_list.pop()
+                        menu:
+                            m "I'm curious.{fast}"
+                            "Heart's Desire.":
+                                jump hearts_desire
+                            "Light Fingers.":
+                                jump light_fingers
+                            "Bag a Legend.":
+                                jump bag_a_legend
+                            "Nemesis.":
+                                jump nemesis
+    else:
+        if persistent._ambition = "HD":
+            m 1eub "How are you getting on with Heart's Desire, [player]?"
+            m "Have you gotten past the Topsy King stuff yet?"
+        elif persistent._ambition = "LF":
+            m 1eub "How are you getting on with Light Fingers, [player]?"
+            m "Have you learned what happened with the Singer yet?"
+        elif persistent._ambition = "BL":
+            m 1eub "How are you getting on with Bag a Legend, [player]?"
+            m "Have you trained your Mandrake yet?"
+        elif persistent._ambition = "NS":
+            m 1eub "How are you getting on with Nemesis, [player]?"
+            m 1kub "Have you worked out who you're avenging yet?"
+        m 1eua "If you get stuck, you can always vent about it to me."
+        m "Maybe you can work out what you're missing while I listen to it."
+        m 1hua "I could be your rubber duck!"
+        m "...{nw}"
+        m 1fusdlb "or maybe you've already long-completed that ambition and I'm just {i}way{/i} out of the loop."
+        m 1wub "In which case, congratulations!"
+    return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetterposi",
+            category=["media"],
+            prompt="Fallen London: POSI",
+            conditional="renpy.seen_label('monika_failbetter1')",
+            action=EV_ACT_RANDOM
+        )
+    )
+
+label monika_failbetterposi:
+    m 5eup "Hey [player], about Fallen London..."
+    m 5eud "...are you a POSI yet?{nw}"
+    $ _history_list.pop()
+    menu:
+        m "...are you a POSI yet?{fast}"
+        "Yep.":
+            m 5wub "Oooh!"
+            m 5wuu "I'm dating a celebrity of the underground~"
+            m 5hua "Ehehe!"
+            m "I guess that means you're in this for the long haul."
+            m 5fub "May the things you need come easily to you!"
+        "Not yet.":
+            m 5fkb "Don't worry, you'll get there eventually!"
+            m 5lsa "It doesn't usually take long after one of your stats hits a hundred."
+            m "At least as far as I've read."
+        "A what?":
+            m 5fssdra "I'll take that as a no, then."
+            m "Don't worry about it, you'll understand when the time comes."
+    return
+
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetterseasky",
+            category=["media"],
+            prompt="Fallen London: Sunless Series",
+            conditional="renpy.seen_label('monika_failbetter1')",
+            action=EV_ACT_RANDOM
+        )
+    )
+
+label monika_failbetterseasky:
+    m 7eub "[mas_get_player_nickname(capitalize=True)], since you're a Fallen London player..."
+    m "...have you played any of the follow-up games?"
+    m 3rub "Sunless Seas and Sunless Skies, I think they're called."
+    m 1eua "They're set in the same world, but they kind of follow different trajectories."
+    m 3eud "Seas has more survival elements than Fallen London."
+    m "You're a captain set to explore the Unterzee for a variety of reasons..."
+    extend 3tud " or to die."
+    m 1tuc "Mostly to die, from what I've seen."
+    m 1lub "While Skies is more of a space-sim, where you travel the world by, um, space-train."
+    m "Similar to Seas, just a different setting and conceit."
+    m 1eua "They might be worth checking out, if you're already into this universe!"
+    return
+        
+init 5 python:
+    addEvent(
+        Event(
+            persistent.event_database,
+            eventlabel="monika_failbetterfate",
+            category=["media"],
+            prompt="Fallen London: FATE",
+            conditional="renpy.seen_label('monika_failbetter1')",
+            action=EV_ACT_RANDOM
+        )
+    )
+
+label monika_failbetterfate:
+    m 1dua "Paisley."
+    menu:
+        "...what":
+            pass
+    m 1eud "That's one of the Fate-locked stories of Fallen London, isn't it?"
+    m 1eub "Paisley?"
+    m "Have you played any of those?{nw}"
+    $ _history_list.pop()
+    menu:
+        m "Have you played any of those?{fast}"
+        "I have.":
+            m 1hub "Good for you!"
+            m "I'm sure they're worth the money, based on what I've heard."
+        "No?":
+            m 1fuc "Oh, okay."
+            m 1fusdrb "Sorry, forget I said anything."
+        "I'm sorry, I'm still stuck on 'paisley' being the first word out of your mouth.":
+            m 1fub "Ehehe~"
+            m "Sorry, [mas_get_player_nickname()]."
+            m 1dua "Some words are just fun to say, whatever the context."
+            m 1wub "{i}Paisley{/i}."
+    return
 
 init 5 python:
     addEvent(

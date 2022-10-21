@@ -4,18 +4,19 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.6.1 - small fixes.",
-        version="1.6.1",
+        "V1.6.2 - s2g I'll get it eventually.",
+        version="1.6.2",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_1",
-        "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_1"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_2",
+        "DaleRuneMTS_dale_reactionary_1_6_1": "DaleRuneMTS_dale_reactionary_1_6_2"
         }
     )
 
@@ -1932,7 +1933,7 @@ label monika_failbetterambition:
                         m "Which ambition do you {i}prefer{/i} so far?{nw}"
                         $ _history_list.pop()
                         menu:
-                            m "I'm curious.{fast}"
+                            m "Which ambition do you {i}prefer{/i} so far?{fast}"
                             "Heart's Desire.":
                                 jump hearts_desire
                             "Light Fingers.":
@@ -1942,23 +1943,23 @@ label monika_failbetterambition:
                             "Nemesis.":
                                 jump nemesis
     else:
-        if persistent._ambition = "HD":
+        if persistent._ambition == "HD":
             m 1eub "How are you getting on with Heart's Desire, [player]?"
             m "Have you gotten past the Topsy King stuff yet?"
-        elif persistent._ambition = "LF":
+        elif persistent._ambition == "LF":
             m 1eub "How are you getting on with Light Fingers, [player]?"
             m "Have you learned what happened with the Singer yet?"
-        elif persistent._ambition = "BL":
+        elif persistent._ambition == "BL":
             m 1eub "How are you getting on with Bag a Legend, [player]?"
             m "Have you trained your Mandrake yet?"
-        elif persistent._ambition = "NS":
+        elif persistent._ambition == "NS":
             m 1eub "How are you getting on with Nemesis, [player]?"
             m 1kub "Have you worked out who you're avenging yet?"
         m 1eua "If you get stuck, you can always vent about it to me."
         m "Maybe you can work out what you're missing while I listen to it."
         m 1hua "I could be your rubber duck!"
         m "...{nw}"
-        m 1fusdlb "or maybe you've already long-completed that ambition and I'm just {i}way{/i} out of the loop."
+        extend 1fusdlb "or maybe you've already long-completed that ambition and I'm just {i}way{/i} out of the loop."
         m 1wub "In which case, congratulations!"
     return
 

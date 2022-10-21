@@ -1787,7 +1787,7 @@ label mas_wrs_failbetter1:
 
         wrs_success = mas_display_notif(
             m_name,
-            therapy_quips,
+            london_quips,
             'Window Reactions'
         )
 

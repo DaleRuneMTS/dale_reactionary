@@ -4,17 +4,18 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.6.0 - the Fallen London update!",
-        version="1.6.0",
+        "V1.6.1 - small fixes.",
+        version="1.6.1",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_0",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_0",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_0",
-        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_0",
-        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_0",
-        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_0"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_1",
+        "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_1"
         }
     )
 
@@ -1805,7 +1806,7 @@ init 5 python:
 
 label monika_failbetter1:
     m 1wuo "[player], you've started playing Fallen London?"
-    m 1eud "I've been thinking of checking that out myself!"
+    m 1eub "I've been thinking of checking that out myself!"
     m "I guess great minds think alike, huh."
     m 3eua "I saw some of its writing floating around, and the concept intrigued me."
     m "It comes across to me as a... "
@@ -1817,7 +1818,7 @@ label monika_failbetter1:
         m 1hubla "You could even fall in love~"
     m 1luc "I'm not sure if I can actually make an account on there, unfortunately..."
     m "...I mean, I can't even {i}remember{/i} my email address."
-    m 1nsa "If I could, I would have started emailing you {cws=*0.5}long{/cws} ago."
+    m 1nsa "If I could, I would have started emailing you {cps=*0.5}long{/cps} ago."
     m 1eua "But I suppose playing it vicariously through you isn't so bad..."
     m 1eub "...delicious [player]~"
     return

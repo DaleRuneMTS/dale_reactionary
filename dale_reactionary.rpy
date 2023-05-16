@@ -4,19 +4,20 @@ init -990 python in mas_submod_utils:
         author="DaleRuneMTS",
         name="Reactionary",
         description="Does Monika need to react to more things? Yes, yes she does. So here is her reacting to more things!"
-        "V1.6.2 - s2g I'll get it eventually.",
-        version="1.6.2",
+        "V1.6.3 - literally just correcting some pronouns.",
+        version="1.6.3",
         dependencies={},
         settings_pane=None,
         version_updates={
-        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_2",
-        "DaleRuneMTS_dale_reactionary_1_6_1": "DaleRuneMTS_dale_reactionary_1_6_2"
+        "DaleRuneMTS_dale_reactionary_1_2_0": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_3_0": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_3_1": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_4_0": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_3",
+        "DaleRuneMTS_dale_reactionary_1_6_1": "DaleRuneMTS_dale_reactionary_1_6_3";
+        "DaleRuneMTS_dale_reactionary_1_6_2": "DaleRuneMTS_dale_reactionary_1_6_3"
         }
     )
 
@@ -1010,15 +1011,15 @@ init 10 python:
 label mas_wrs_stupy:
     python:
         stupy_quips = [
-            "He really should have said oki doki.",
-            "On one hand, he's frightened of me; but on the other, he did call me a goddess...\nI'm really not sure how to feel.",
+            "They really should have said oki doki.",
+            "On one hand, they're frightened of me; but on the other, they did call me a goddess...\nI'm really not sure how to feel.",
             "Heh. Harm monika, harmonica... Stupendium really is very clever.",
             "[m_name]'s aloof and kooky!\n[m_name]'s sweet and cutesy!\n[m_name]'s deep and brooding!\n[m_name]'s brains and beauty!"
         ]
 
         if mas_isMoniUpset(lower=True):
             stupy_quips.extend([
-                "Say what you will; at least {i}he{/i} never wanted to hurt me."
+                "Say what you will; at least {i}they{/i} never wanted to hurt me."
             ])
 
         wrs_success = mas_display_notif(

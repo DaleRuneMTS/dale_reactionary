@@ -16,7 +16,7 @@ init -990 python in mas_submod_utils:
         "DaleRuneMTS_dale_reactionary_1_4_1": "DaleRuneMTS_dale_reactionary_1_6_3",
         "DaleRuneMTS_dale_reactionary_1_5_0": "DaleRuneMTS_dale_reactionary_1_6_3",
         "DaleRuneMTS_dale_reactionary_1_6_0": "DaleRuneMTS_dale_reactionary_1_6_3",
-        "DaleRuneMTS_dale_reactionary_1_6_1": "DaleRuneMTS_dale_reactionary_1_6_3";
+        "DaleRuneMTS_dale_reactionary_1_6_1": "DaleRuneMTS_dale_reactionary_1_6_3",
         "DaleRuneMTS_dale_reactionary_1_6_2": "DaleRuneMTS_dale_reactionary_1_6_3"
         }
     )
